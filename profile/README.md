@@ -44,18 +44,6 @@ Native TypeScript execution through Node.js 25.2.0+ type stripping means zero bu
 
 &nbsp;
 
-## Architecture
-
-<div align="center">
-
-<img alt="Connectum Architecture Layers" src="../assets/layers.png" width="80%">
-
-</div>
-
-<br>
-
-&nbsp;
-
 ## Links
 
 <div align="center">
