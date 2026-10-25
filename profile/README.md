@@ -10,52 +10,92 @@
 
 <br>
 
-**Minimalist Node.js framework for production-ready gRPC/ConnectRPC microservices**
+**Production-ready gRPC / ConnectRPC microservices for Node.js, with Protocol Buffers as the single source of truth**
 
 <br>
 
-[![npm version](https://img.shields.io/npm/v/@connectum/core?style=flat-square&color=blue)](https://www.npmjs.com/package/@connectum/core)
-[![License](https://img.shields.io/badge/license-Apache%202.0-green?style=flat-square)](https://github.com/Connectum-Framework/connectum/blob/main/LICENSE)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D25.2.0-brightgreen?style=flat-square)](https://nodejs.org/)
-[![Status](https://img.shields.io/badge/status-Beta-orange?style=flat-square)]()
-[![TypeScript](https://img.shields.io/badge/TypeScript-Native-blue?style=flat-square)](https://nodejs.org/en/learn/typescript/run-natively)
+[![CI](https://img.shields.io/github/actions/workflow/status/Connectum-Framework/connectum/ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/Connectum-Framework/connectum/actions/workflows/ci.yml?query=branch%3Amain)
+[![npm](https://img.shields.io/npm/v/@connectum/core?label=npm&style=flat-square&color=blue)](https://www.npmjs.com/package/@connectum/core)
+[![Downloads](https://img.shields.io/npm/dm/@connectum/core?label=downloads&style=flat-square)](https://www.npmjs.com/package/@connectum/core)
+[![Latest release](https://img.shields.io/github/v/release/Connectum-Framework/connectum?style=flat-square)](https://github.com/Connectum-Framework/connectum/releases/latest)
+[![Node.js](https://img.shields.io/node/v/@connectum/core?label=node&style=flat-square&color=brightgreen)](https://connectum.dev/en/guide/runtime-compatibility)
+[![License](https://img.shields.io/github/license/Connectum-Framework/connectum?style=flat-square&color=green)](https://github.com/Connectum-Framework/connectum/blob/main/LICENSE)
+[![BSR](https://img.shields.io/badge/BSR-connectum--framework-blue?style=flat-square&logo=buf&logoColor=white)](https://buf.build/connectum-framework/connectum)
+
+[Quickstart](https://connectum.dev/en/guide/quickstart) ·
+[Documentation](https://connectum.dev) ·
+[Examples](https://github.com/Connectum-Framework/examples) ·
+[Roadmap](https://github.com/orgs/Connectum-Framework/projects/1) ·
+[Discussions](https://github.com/Connectum-Framework/connectum/discussions)
 
 </div>
 
 &nbsp;
 
-## Core Principles
+## What Connectum is
 
-1. **Minimalist** — Zero bloat, only essential abstractions. No unnecessary layers between you and the platform.
-2. **Cloud Native** — Built for Kubernetes, service mesh, control plane, zero trust, and IdP integration from day one.
-3. **gRPC/ConnectRPC Ecosystem** — First-class support for Protocol Buffers, gRPC, and ConnectRPC with modern Node.js patterns.
-4. **Strict Separation of Concerns** — Clean layered architecture. Each package does one thing well.
-5. **Non-Opinionated** — No forced ORM, message broker, or specific libraries. Bring your own Kafka, NATS, Prisma, or Drizzle. Easy migration of existing codebases.
+Connectum is a set of modular packages for building gRPC and ConnectRPC services in TypeScript. You describe a service in a `.proto` file; the server, the typed clients, the event topics, the authorization rules and the service catalog follow from that contract. There is no hidden layer between your code and the platform, and you bring your own database, ORM and message broker.
+
+```typescript
+import { createServer } from '@connectum/core';
+import { Healthcheck } from '@connectum/healthcheck';
+import { Reflection } from '@connectum/reflection';
+import { createDefaultInterceptors } from '@connectum/interceptors';
+
+const server = createServer({
+  services: [routes], // your ConnectRPC routes
+  port: 5000,
+  protocols: [Healthcheck({ httpEnabled: true }), Reflection()],
+  interceptors: createDefaultInterceptors(),
+});
+
+await server.start();
+```
 
 &nbsp;
 
-## Why Connectum
+## What you get
 
-Modern enterprise infrastructure is built on service mesh, control plane, Kubernetes, zero trust, Identity Providers, and other technologies that impose their own requirements on software for native and seamless integration of all components.
+| | |
+|---|---|
+| :electric_plug: **Server** | `createServer()` with lifecycle events, TLS, graceful shutdown and pluggable protocols (health check, reflection) |
+| :shield: **Interceptors** | Error handling and request validation by default; timeout, retry, circuit breaker, bulkhead and fallback when you opt in |
+| :closed_lock_with_key: **Auth** | JWT, gateway and session authentication, declarative RBAC, authorization declared in the proto |
+| :incoming_envelope: **Events** | A proto-first `EventBus` with retry and dead-letter middleware, and adapters for NATS JetStream, Kafka / Redpanda, Redis Streams / Valkey and AMQP / RabbitMQ |
+| :bar_chart: **Observability** | OpenTelemetry tracing, metrics and logs through one `initProvider()` |
+| :jigsaw: **Service catalog** | A typed `ctx.call()` between services, generated from your protos by a Buf plugin |
+| :test_tube: **Testing** | An in-process server and client for tests that open no socket, plus mock contexts and resolvers |
 
-Connectum provides tools for native and seamless development with these concepts. It doesn't reinvent the wheel. It bridges the gap between your Node.js application and the cloud-native ecosystem, giving you production-grade primitives without locking you into specific choices.
-
-Native TypeScript execution through Node.js 25.2.0+ type stripping means zero build step, instant startup, and simplified CI/CD — your TypeScript runs directly, as it should.
+Every package is published on npm under `@connectum/*`, and the contracts are published to the [Buf Schema Registry](https://buf.build/connectum-framework/connectum). Node.js and Bun are exercised in CI; the [compatibility matrix](https://connectum.dev/en/guide/runtime-compatibility) lists what is supported where.
 
 &nbsp;
 
-## Links
+## Repositories
 
-<div align="center">
+| Repository | What it is |
+|---|---|
+| [**connectum**](https://github.com/Connectum-Framework/connectum) | The framework: 15 packages in one pnpm workspace. Issues, releases and the changelog live here. |
+| [**docs**](https://github.com/Connectum-Framework/docs) | Sources of [connectum.dev](https://connectum.dev): guides, package pages, architecture decision records and the generated API reference. |
+| [**examples**](https://github.com/Connectum-Framework/examples) | Runnable services: a getting-started project, an HRIS and a car-sharing system, event-bus setups for each broker, and a performance test server. |
+| [**protobuf-es**](https://github.com/Connectum-Framework/protobuf-es) | A fork of [bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es), Protocol Buffers for ECMAScript. |
 
-| | Resource | |
-|---|---|---|
-| :book: | **Documentation** | [connectum.dev](https://connectum.dev) |
-| :package: | **Framework** | [Connectum-Framework/connectum](https://github.com/Connectum-Framework/connectum) |
-| :bulb: | **Examples** | [Connectum-Framework/examples](https://github.com/Connectum-Framework/examples) |
-| :world_map: | **Roadmap** | [Project Board](https://github.com/orgs/Connectum-Framework/projects/1) |
+&nbsp;
 
-</div>
+## Principles
+
+1. **Minimalist.** Only essential abstractions; nothing sits between you and the platform.
+2. **Cloud native.** Built for Kubernetes, service meshes, zero trust and identity providers from the first line.
+3. **Contract first.** Protocol Buffers, gRPC and ConnectRPC are first-class; the contract drives the code, not the other way round.
+4. **Separation of concerns.** Each package does one thing, and the layers between packages are documented.
+5. **Non-opinionated.** No forced ORM, broker or logger. Bring Kafka, NATS, Prisma or Drizzle.
+
+&nbsp;
+
+## Get involved
+
+- **Use it:** start with the [quickstart](https://connectum.dev/en/guide/quickstart), then read the [example](https://github.com/Connectum-Framework/examples) closest to your case.
+- **Ask or propose:** open a [discussion](https://github.com/Connectum-Framework/connectum/discussions); report a bug or a documentation gap as an [issue](https://github.com/Connectum-Framework/connectum/issues/new).
+- **Contribute:** read [CONTRIBUTING.md](https://github.com/Connectum-Framework/connectum/blob/main/CONTRIBUTING.md) and the [development setup](https://connectum.dev/en/contributing/development-setup). Planned work is on the [project board](https://github.com/orgs/Connectum-Framework/projects/1).
 
 &nbsp;
 
