@@ -4,13 +4,13 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../assets/splash-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="../assets/splash.png">
-  <img alt="Connectum — Microservices Framework" src="../assets/splash.png" width="100%">
+  <img alt="Connectum — Proto-first gRPC/ConnectRPC framework for TypeScript" src="../assets/splash.png" width="100%">
 </picture>
 </a>
 
 <br>
 
-**Minimalist Node.js framework for production-ready gRPC/ConnectRPC microservices**
+**Proto-first gRPC/ConnectRPC framework for TypeScript**
 
 <br>
 
