@@ -16,7 +16,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@connectum/core?style=flat-square&color=blue)](https://www.npmjs.com/package/@connectum/core)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green?style=flat-square)](https://github.com/Connectum-Framework/connectum/blob/main/LICENSE)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D25.2.0-brightgreen?style=flat-square)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/node/v/@connectum/core?style=flat-square&color=brightgreen)](https://www.npmjs.com/package/@connectum/core)
 [![Status](https://img.shields.io/badge/status-Beta-orange?style=flat-square)]()
 [![TypeScript](https://img.shields.io/badge/TypeScript-Native-blue?style=flat-square)](https://nodejs.org/en/learn/typescript/run-natively)
 
