@@ -4,19 +4,19 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../assets/splash-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="../assets/splash.png">
-  <img alt="Connectum — Microservices Framework" src="../assets/splash.png" width="100%">
+  <img alt="Connectum — Proto-first gRPC/ConnectRPC framework for TypeScript" src="../assets/splash.png" width="100%">
 </picture>
 </a>
 
 <br>
 
-**Minimalist Node.js framework for production-ready gRPC/ConnectRPC microservices**
+**Proto-first gRPC/ConnectRPC framework for TypeScript**
 
 <br>
 
 [![npm version](https://img.shields.io/npm/v/@connectum/core?style=flat-square&color=blue)](https://www.npmjs.com/package/@connectum/core)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green?style=flat-square)](https://github.com/Connectum-Framework/connectum/blob/main/LICENSE)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D25.2.0-brightgreen?style=flat-square)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/node/v/@connectum/core?style=flat-square&color=brightgreen)](https://www.npmjs.com/package/@connectum/core)
 [![Status](https://img.shields.io/badge/status-Beta-orange?style=flat-square)]()
 [![TypeScript](https://img.shields.io/badge/TypeScript-Native-blue?style=flat-square)](https://nodejs.org/en/learn/typescript/run-natively)
 
